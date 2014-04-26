@@ -1,0 +1,40 @@
+{
+  "name": "contentify",
+  "version": "0.0.1",
+  "description": "SDK Node.js for Contentify",
+  "main": "lib/contentify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thyb/contentify-node.git"
+  },
+  "keywords": [
+    "content",
+    "content",
+    "management",
+    "node",
+    "collaborative",
+    "realtime",
+    "oauth",
+    "github"
+  ],
+  "author": "Thibaud Arnault",
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/thyb/contentify-node/issues"
+  },
+  "homepage": "https://github.com/thyb/contentify-node",
+  "dependencies": {
+    "marked": "^0.3.2",
+    "request": "^2.34.0",
+    "restify": "^2.7.0",
+    "async": "^0.7.0",
+    "path": "^0.4.9",
+    "grunt-cli": "^0.1.13",
+    "grunt": "^0.4.4",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-coffee": "^0.10.1"
+  }
+}
