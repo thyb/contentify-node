@@ -13,6 +13,8 @@ class Content
 	getBaseUrl: () ->
 		return 'https://api.github.com/repos/' + @owner + '/' + @repo + '/contents/'
 
+	initialize: (@owner, @repo, mode) ->
+		@mode = mode || 'release'
 
 	clearCache: (filename) ->
 		if filename
@@ -34,9 +36,8 @@ class Content
 		return callback 'no file' if not filename
 
 		return callback null, @raw[filename] if @raw[filename]
-		branch = 'master'
-		if @mode == 'draft'
-			branch = @getSlug filename
+		branch = @mode || 'master'
+		branch = 'master' if @mode == 'release'
 
 		options =
 			url: @getBaseUrl() + filename + "?ref=" + branch
