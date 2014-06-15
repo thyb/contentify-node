@@ -13,7 +13,7 @@ class Content
 	getBaseUrl: () ->
 		return 'https://api.github.com/repos/' + @owner + '/' + @repo + '/contents/'
 
-	initialize: (@owner, @repo, mode) ->
+	initialize: (@owner, @repo, @username, @password, mode) ->
 		@mode = mode || 'release'
 
 	clearCache: (filename) ->
