@@ -54,15 +54,30 @@ class Content
 			return callback null, data
 
 	compile: (data) ->
-		regexp = /\[\[ ?fragment ([a-zA-Z0-9-_]+) ?\]\]((.*\s*)*?)\[\[ ?\/fragment ?\]\]/gi
+		regexp = /\[\[ ?fragment ([a-zA-Z0-9-_]+)( (\"(.*)\"))? ?\]\](((.*)\s*)*?)\[\[ ?\/fragment ?\]\]/gi
 		res = data.match regexp
 		return marked(data) if not res
 		results = {}
-		regexp = /\[\[ ?fragment ([a-zA-Z0-9-_]+) ?\]\]((.*\s*)*?)\[\[ ?\/fragment ?\]\]/i
+		regexp = /\[\[ ?fragment ([a-zA-Z0-9-_]+)( (\"(.*)\"))? ?\]\]((.*\s*)*?)\[\[ ?\/fragment ?\]\]/i
 		for fragment in res
 			match = fragment.match(regexp)
-			results[match[1]] = marked(match[2].trim())
+			r =
+				name: if match[4] then match[4] else match[1]
+				html: marked(match[5].trim())
+
+			results[match[1]] = r
 		return results
+
+	getFragments: (filename, callback) ->
+		return callback "filename null" if not filename
+		if @content[filename]
+			return callback null, @content[filename]
+		else
+			@getContentRaw filename, (err, data) =>
+				return callback err if err
+				comp = @compile data
+				@content[filename] = comp
+				return callback null, comp
 
 	getContent: (filename, fragment, callback) ->
 		if not callback
@@ -92,7 +107,7 @@ class Content
 				if fragment.length > 0
 					c = []
 					for f in fragment
-						c.push data[f] if data[f]
+						c.push data[f].html if data[f]
 					return callback null, c
 
 			return callback null, data
