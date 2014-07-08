@@ -162,7 +162,7 @@ class Content
 
 						i = 0
 						for u in results
-							data = data.replace(u, contents[i].html || contents[i])
+							data = data.replace(u, contents[i].html || contents[i]) if contents[i]
 							i++
 
 						res.setHeader 'Content-Type', 'text/html'
