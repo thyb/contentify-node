@@ -21,8 +21,8 @@ class Content
 			delete @raw[filename]
 			delete @content[filename]
 		else
-			delete @raw
-			delete @content
+			@raw = {}
+			@content = {}
 
 	getExtension: (filename) ->
 		res = filename.match /[a-zA-Z0-9-_]+\.([a-z]{1,4})/i
