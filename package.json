@@ -1,6 +1,6 @@
 {
   "name": "contentify",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "SDK Node.js for Contentify",
   "main": "lib/contentify.js",
   "scripts": {
