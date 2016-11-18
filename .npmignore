@@ -1,3 +1,3 @@
-lib/contentify.js
+lib/contentify.coffee
 node_modules
 npm-debug.log
